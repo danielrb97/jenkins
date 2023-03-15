@@ -1,15 +1,18 @@
-pipeline {
+pipeline{
     agent any
-
-        stages {
- 
-            stage ('test') {
-                steps {
-                  dir("build_java"){
-                        bat "mvn clean compile test --fail-never"
-                  }           
-                   
+    stages{
+        stage("unit testing patient project"){
+            steps{
+                dir("build_java"){
+                    bat "mvn clean compile test --fail-never"
                 }
             }
         }
+        
+    }
+    post {
+        always {
+            junit(testResults: 'target/surefire-reports/*.xml', allowEmptyResults : true)
+        }
+    }
 }
