@@ -10,7 +10,6 @@ pipeline{
         }
         
     }
-    sh "pwd"
     post {
         always {
             junit(testResults: 'target/surefire-reports/*.xml', allowEmptyResults : true)
