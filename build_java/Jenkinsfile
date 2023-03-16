@@ -10,9 +10,10 @@ pipeline{
         }
         
     }
+    bat "pwd"
     post {
         always {
-            junit(testResults: '**/test-results/*.xml', allowEmptyResults : true)
+            junit(testResults: 'target/surefire-reports/*.xml', allowEmptyResults : true)
         }
     }
 }
